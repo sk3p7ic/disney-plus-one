@@ -55,8 +55,6 @@ export const Header = forwardRef<HTMLDivElement>((_, ref) => {
           {pages.map((page) => (
             <Button
               href={page.href}
-              target="_blank"
-              referrerPolicy="no-referrer"
               key={page.name}
               sx={{ color: "white", display: "block" }}
             >
@@ -83,12 +81,7 @@ export const Header = forwardRef<HTMLDivElement>((_, ref) => {
             onClose={() => setShowMobileNav(false)}
           >
             {pages.map((page) => (
-              <MenuItem
-                key={page.name}
-                href={page.href}
-                target="_blank"
-                referrerPolicy="no-referrer"
-              >
+              <MenuItem key={page.name} href={page.href}>
                 <Typography>{page.name}</Typography>
               </MenuItem>
             ))}
