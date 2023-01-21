@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Typography from "@mui/material/Typography";
 import { Header } from "../components/Header";
 
 type LayoutProps = {
@@ -15,7 +16,11 @@ export const DefaultLayout = ({ children }: LayoutProps) => {
 
   return (
     <div
-      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
     >
       <Header ref={headerRef} />
       <div
@@ -27,6 +32,13 @@ export const DefaultLayout = ({ children }: LayoutProps) => {
       >
         {children}
       </div>
+      <Typography
+        variant="caption"
+        textAlign="center"
+        sx={{ backgroundColor: "info.light", paddingY: "0.25rem" }}
+      >
+        Disney and Disney characters are trademarks of Walt Disney Company.
+      </Typography>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { getLastPageItemCount, getTotalPages } from "../util/queries";
+import DisneyBg from "../assets/Disney-Bg.jpg";
 
 export const HomePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -30,15 +31,35 @@ export const HomePage = () => {
     (lastPageData?.characters.paginationInfo.pageItemCount ?? 50);
 
   return (
-    <main style={{ flexGrow: 1, display: "flex" }}>
-      <Container maxWidth="xl" sx={{ flexGrow: 1, display: "flex" }}>
+    <main
+      style={{
+        flexGrow: 1,
+        display: "flex",
+        backgroundImage: `url(${DisneyBg})`,
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <Container
+        maxWidth="xl"
+        sx={{
+          flexGrow: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Box
           sx={{
-            flexGrow: 1,
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
+            gap: "0.5rem",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            padding: "1rem",
+            borderRadius: "0.25rem",
           }}
         >
           <Typography variant="h2" textAlign="center">
