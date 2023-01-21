@@ -14,11 +14,15 @@ export const DefaultLayout = ({ children }: LayoutProps) => {
   }, [headerRef]);
 
   return (
-    <div>
+    <div
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
       <Header ref={headerRef} />
       <div
         style={{
           marginTop: `${heightOffset}px`,
+          flexGrow: 1,
+          display: "flex",
         }}
       >
         {children}
