@@ -11,7 +11,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import { useState, useRef } from "react";
+import { useState, useRef, forwardRef } from "react";
 
 const pages = [
   {
@@ -28,7 +28,7 @@ const pages = [
   },
 ];
 
-export const Header = () => {
+export const Header = forwardRef<HTMLDivElement>((_, ref) => {
   const [showMobileNav, setShowMobileNav] = useState(false);
   const navMenuButtonRef = useRef<HTMLButtonElement | null>(null);
 
@@ -36,6 +36,7 @@ export const Header = () => {
     <AppBar
       position="fixed"
       sx={{ top: 0, left: 0, right: 0, flexGrow: 1, flexDirection: "row" }}
+      ref={ref}
     >
       <Container
         maxWidth="xl"
@@ -96,4 +97,4 @@ export const Header = () => {
       </Container>
     </AppBar>
   );
-};
+});
