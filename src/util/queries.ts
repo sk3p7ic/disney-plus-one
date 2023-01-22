@@ -8,6 +8,11 @@ export type TotalPageData = {
   };
 };
 
+/**
+ * Queries and returns the state for the query of the total number of pages of
+ * characters.
+ * @returns Query results for the total number of pages.
+ */
 export const getTotalPages = () =>
   useQuery<TotalPageData>(gql`
     {
@@ -27,6 +32,12 @@ export type LastPageItemCountData = {
   };
 };
 
+/**
+ * Queries and returns the state for the query of the number of items present
+ * on the last page of characters.
+ * @param page The page number of the last page of characters.
+ * @returns Query results for the number of items on the last page.
+ */
 export const getLastPageItemCount = (page: number) =>
   useQuery<LastPageItemCountData>(
     gql`
@@ -50,6 +61,11 @@ export type ShortCharacter = {
   tvShows: string[];
 };
 
+/**
+ * Gets the list of characters available under a given page.
+ * @param page The page to retrieve the list of characters for>
+ * @returns Query results for the Disney characters.
+ */
 export const getCharacterListQuery = (page: number): DocumentNode =>
   gql`
     {

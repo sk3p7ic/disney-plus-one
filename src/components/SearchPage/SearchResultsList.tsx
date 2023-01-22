@@ -10,14 +10,23 @@ import { Tv, Movie } from "@mui/icons-material";
 import { useSearchQuery } from "../../contexts/SearchQueryContext";
 
 export const SearchResultsList = () => {
+  // Get the state from the context
   const {
     searchQuery: { loading, error, data },
   } = useSearchQuery();
 
+  // If this query has not finished or has had an error
   if (loading || error) return <div></div>;
 
+  // Get the list of characters from the queried data
   const characters = data?.characters.items ?? [];
 
+  /**
+   * Shortens / truncates a name for easier display.
+   * @param name The name of the film or show to shorten.
+   * @returns The shortened name, to 18 charaters including ellipses if the
+   * name was longer than 18 characters, else the name.
+   */
   const shortenName = (name: string) =>
     name.length < 18 ? name : name.slice(0, 15) + "...";
 
