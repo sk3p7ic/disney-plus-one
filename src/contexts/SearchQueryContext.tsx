@@ -6,7 +6,7 @@ type QueryDataResult = {
   characters: {
     items: ShortCharacter[];
     paginationInfo: {
-      totalpages: number;
+      totalPages: number;
     };
   };
 };
@@ -18,13 +18,14 @@ type SearchQueryContextValue = {
     data?: QueryDataResult;
   };
   page: number;
-  incrPage: () => void;
-  decrPage: () => void;
+  changePage: (_: number) => void;
 };
 
-const SearchQueryContext = React.createContext<SearchQueryContextValue | null>(
-  null
-);
+const SearchQueryContext = React.createContext<SearchQueryContextValue>({
+  searchQuery: { loading: false },
+  page: 1,
+  changePage: (_: number) => {},
+});
 
 export const useSearchQuery = () => useContext(SearchQueryContext);
 
@@ -46,16 +47,14 @@ export const SearchQueryContextProvider = ({
 
   const { loading, error, data } = useQuery<QueryDataResult>(searchQueryString);
 
-  const incrPage = () => setPage((page) => page + 1);
-  const decrPage = () => setPage((page) => (page > 1 ? page - 1 : 1));
+  const changePage = (p: number) => setPage(p);
 
   return (
     <SearchQueryContext.Provider
       value={{
         searchQuery: { loading, error, data },
         page,
-        incrPage,
-        decrPage,
+        changePage,
       }}
     >
       {children}

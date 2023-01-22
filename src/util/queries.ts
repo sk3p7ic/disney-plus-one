@@ -63,6 +63,9 @@ export const getCharacterListQuery = (page: number): DocumentNode =>
           films
           tvShows
         }
+        paginationInfo {
+          totalPages
+        }
       }
     }
   `;
