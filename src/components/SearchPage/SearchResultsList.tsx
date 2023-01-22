@@ -6,9 +6,10 @@ import {
   CardMedia,
   Chip,
   Grid,
+  IconButton,
   Typography,
 } from "@mui/material";
-import { Tv, Movie } from "@mui/icons-material";
+import { Favorite, FavoriteBorder, Tv, Movie } from "@mui/icons-material";
 import { useSearchQuery } from "../../contexts/SearchQueryContext";
 
 export const SearchResultsList = () => {
@@ -68,6 +69,9 @@ export const SearchResultsList = () => {
                 <Button href={`/search/${character._id}`}>
                   View More Info
                 </Button>
+                <IconButton>
+                  <FavoriteBorder />
+                </IconButton>
               </CardActions>
             </Card>
           </Grid>
