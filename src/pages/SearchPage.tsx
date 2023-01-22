@@ -15,6 +15,7 @@ export const SearchPage = () => {
         <Container maxWidth="lg">
           <SearchNavigator />
           <SearchResultsList />
+          <SearchNavigator />
         </Container>
       </SearchQueryContextProvider>
     </main>

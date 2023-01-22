@@ -1,4 +1,4 @@
-import { Pagination } from "@mui/material";
+import { Box, Pagination } from "@mui/material";
 import { useSearchQuery } from "../../contexts/SearchQueryContext";
 
 export const SearchNavigator = () => {
@@ -26,12 +26,15 @@ export const SearchNavigator = () => {
   };
 
   return (
-    <div>
+    <Box display="flex" justifyContent="center" padding={2}>
       <Pagination
         count={pageCount}
         defaultPage={page}
         onChange={handlePageChange}
+        variant="outlined"
+        shape="rounded"
+        color="secondary"
       />
-    </div>
+    </Box>
   );
 };

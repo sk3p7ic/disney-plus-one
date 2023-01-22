@@ -34,7 +34,7 @@ export const SearchResultsList = () => {
     <div>
       <Grid container spacing={2} paddingX="auto">
         {characters.map((character) => (
-          <Grid item xs={4} key={character._id}>
+          <Grid item xs={6} md={4} key={character._id}>
             <Card>
               <CardMedia
                 component="img"
