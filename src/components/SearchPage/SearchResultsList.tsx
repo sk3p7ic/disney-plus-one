@@ -1,5 +1,7 @@
 import {
+  Button,
   Card,
+  CardActions,
   CardContent,
   CardMedia,
   Chip,
@@ -35,7 +37,9 @@ export const SearchResultsList = () => {
       <Grid container spacing={2} paddingX="auto">
         {characters.map((character) => (
           <Grid item xs={6} md={4} key={character._id}>
-            <Card>
+            <Card
+              sx={{ height: "100%", display: "flex", flexDirection: "column" }}
+            >
               <CardMedia
                 component="img"
                 image={character.imageUrl}
@@ -43,7 +47,7 @@ export const SearchResultsList = () => {
                 alt={character.name}
                 sx={{ objectFit: "cover" }}
               />
-              <CardContent>
+              <CardContent sx={{ flexGrow: 1 }}>
                 <Typography variant="h5">{character.name}</Typography>
                 <Grid container spacing={1}>
                   {character.films.length > 0 &&
@@ -60,6 +64,11 @@ export const SearchResultsList = () => {
                     ))}
                 </Grid>
               </CardContent>
+              <CardActions>
+                <Button href={`/search/${character._id}`}>
+                  View More Info
+                </Button>
+              </CardActions>
             </Card>
           </Grid>
         ))}
