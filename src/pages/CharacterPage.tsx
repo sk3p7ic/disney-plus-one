@@ -59,7 +59,15 @@ export const CharacterPage = () => {
         <CardContent>
           <Stack direction="row" spacing={2}>
             <Typography variant="h4">{character.name}</Typography>
-            <IconButton onClick={() => toggleFavorite(character._id)}>
+            <IconButton
+              onClick={() =>
+                toggleFavorite({
+                  id: character._id,
+                  name: character.name,
+                  imageUrl: character.imageUrl,
+                })
+              }
+            >
               {favorites.has(character._id) ? <Favorite /> : <FavoriteBorder />}
             </IconButton>
           </Stack>

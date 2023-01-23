@@ -73,7 +73,15 @@ export const SearchResultsList = () => {
                 <Button href={`/search/${character._id}`}>
                   View More Info
                 </Button>
-                <IconButton onClick={() => toggleFavorite(character._id)}>
+                <IconButton
+                  onClick={() =>
+                    toggleFavorite({
+                      id: character._id,
+                      name: character.name,
+                      imageUrl: character.imageUrl,
+                    })
+                  }
+                >
                   {favorites.has(character._id) ? (
                     <Favorite />
                   ) : (
