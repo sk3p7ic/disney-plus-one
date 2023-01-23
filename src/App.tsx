@@ -12,6 +12,7 @@ import {
 } from "./pages/CharacterPage";
 import { FavoritesContextProvider } from "./contexts/FavoritesContext";
 import { FavoritesPage } from "./pages/FavoritesPage";
+import { NotFoundPage } from "./pages/_404";
 
 const toRouteElement = (children: JSX.Element) => (
   <DefaultLayout>{children}</DefaultLayout>
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: toRouteElement(<HomePage />),
+    errorElement: toRouteElement(<NotFoundPage />),
   },
   {
     path: "/search",
