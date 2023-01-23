@@ -33,22 +33,32 @@ export const FavoritesPage = () => {
       <Typography variant="h4">My Favorites.</Typography>
       <Divider />
       <Container maxWidth="sm">
-        <List sx={{ backgroundColor: "#f3e5f5", borderRadius: 2, margin: 2 }}>
-          {Array.from(favorites.values()).map((character) => (
-            <ListItem key={character.id}>
-              <ListItemAvatar>
-                <Avatar src={character.imageUrl} />
-              </ListItemAvatar>
-              <ListItemText sx={{ flexGrow: 1 }}>{character.name}</ListItemText>
-              <ListItemButton
-                onClick={() => handleRemoveFavorite(character)}
-                sx={{ flexGrow: 0, display: "flex", justifyContent: "center" }}
-              >
-                <Favorite />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+        {Array.from(favorites.keys()).length > 0 ? (
+          <List sx={{ backgroundColor: "#f3e5f5", borderRadius: 2, margin: 2 }}>
+            {Array.from(favorites.values()).map((character) => (
+              <ListItem key={character.id}>
+                <ListItemAvatar>
+                  <Avatar src={character.imageUrl} />
+                </ListItemAvatar>
+                <ListItemText sx={{ flexGrow: 1 }}>
+                  {character.name}
+                </ListItemText>
+                <ListItemButton
+                  onClick={() => handleRemoveFavorite(character)}
+                  sx={{
+                    flexGrow: 0,
+                    display: "flex",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Favorite />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        ) : (
+          <Typography>You have not added any favorites yet.</Typography>
+        )}
       </Container>
       <Snackbar
         open={showSnackbar}
