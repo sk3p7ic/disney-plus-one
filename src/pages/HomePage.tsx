@@ -5,6 +5,10 @@ import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { getLastPageItemCount, getTotalPages } from "../util/queries";
 import DisneyBg from "../assets/Disney-Bg.jpg";
+import {
+  ErrorStateComponent,
+  LoadingStateComponent,
+} from "../components/QueryAltStates";
 
 export const HomePage = () => {
   const [pageNumber, setPageNumber] = useState(1);
@@ -23,8 +27,17 @@ export const HomePage = () => {
     setPageNumber(totalPageData?.characters.paginationInfo.totalPages ?? 1);
   }, [totalPageData]);
 
-  if (totalPageLoading || lastPageLoading) return <main>Loading...</main>;
-  if (totalPageError || lastPageError) return <main>Error...</main>;
+  if (totalPageLoading || lastPageLoading) return <LoadingStateComponent />;
+  if (totalPageError || lastPageError)
+    return (
+      <ErrorStateComponent
+        error={
+          totalPageError?.message ??
+          lastPageError?.message ??
+          "Something went wrong."
+        }
+      />
+    );
 
   const totalCharacters =
     50 * (pageNumber - 1) +
