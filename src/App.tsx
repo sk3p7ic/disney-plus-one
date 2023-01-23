@@ -10,6 +10,7 @@ import {
   CharacterPage,
   loader as characterPageLoader,
 } from "./pages/CharacterPage";
+import { FavoritesContextProvider } from "./contexts/FavoritesContext";
 
 const toRouteElement = (children: JSX.Element) => (
   <DefaultLayout>{children}</DefaultLayout>
@@ -32,5 +33,9 @@ const router = createBrowserRouter([
 ]);
 
 export const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <FavoritesContextProvider>
+      <RouterProvider router={router} />
+    </FavoritesContextProvider>
+  );
 };
