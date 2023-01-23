@@ -11,6 +11,7 @@ import {
   loader as characterPageLoader,
 } from "./pages/CharacterPage";
 import { FavoritesContextProvider } from "./contexts/FavoritesContext";
+import { FavoritesPage } from "./pages/FavoritesPage";
 
 const toRouteElement = (children: JSX.Element) => (
   <DefaultLayout>{children}</DefaultLayout>
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
     path: "/search/:character",
     element: toRouteElement(<CharacterPage />),
     loader: characterPageLoader,
+  },
+  {
+    path: "/favorites",
+    element: toRouteElement(<FavoritesPage />),
   },
 ]);
 
