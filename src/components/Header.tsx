@@ -26,6 +26,10 @@ const pages = [
     name: "Favorites",
     href: "/favorites",
   },
+  {
+    name: "Github",
+    href: "https://github.com/sk3p7ic/disney-plus-one",
+  },
 ];
 
 export const Header = forwardRef<HTMLDivElement>((_, ref) => {
