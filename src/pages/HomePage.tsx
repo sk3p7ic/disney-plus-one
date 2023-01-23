@@ -11,18 +11,22 @@ import {
 } from "../components/QueryAltStates";
 
 export const HomePage = () => {
+  // Stores the number for the last page available in the API
   const [pageNumber, setPageNumber] = useState(1);
+  // Get the total number of pages available
   const {
     loading: totalPageLoading,
     error: totalPageError,
     data: totalPageData,
   } = getTotalPages();
+  // Get the number of items available on the last page
   const {
     loading: lastPageLoading,
     error: lastPageError,
     data: lastPageData,
   } = getLastPageItemCount(pageNumber);
 
+  // Set the total number of pages available once the first query resolves
   useEffect(() => {
     setPageNumber(totalPageData?.characters.paginationInfo.totalPages ?? 1);
   }, [totalPageData]);
@@ -39,6 +43,7 @@ export const HomePage = () => {
       />
     );
 
+  /** The total number of characters available in the API. */
   const totalCharacters =
     50 * (pageNumber - 1) +
     (lastPageData?.characters.paginationInfo.pageItemCount ?? 50);
