@@ -25,7 +25,7 @@ type ConfirmFavoriteRemoveDialogProps = {
     character: FavoriteCharacterInfo
   ) => void;
   /** The name of this character to remove. */
-  character: FavoriteCharacterInfo;
+  character?: FavoriteCharacterInfo;
 };
 
 export const ConfirmFavoriteRemoveDialog = ({
@@ -35,7 +35,7 @@ export const ConfirmFavoriteRemoveDialog = ({
   character,
 }: ConfirmFavoriteRemoveDialogProps) => {
   const handleClick = (action: "accept" | "decline") => {
-    handleButtonClick(action, character);
+    if (character) handleButtonClick(action, character);
     onClose();
   };
 
@@ -51,7 +51,7 @@ export const ConfirmFavoriteRemoveDialog = ({
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="confirm-remove-description">
-          Are you sure that you'd like to remove character "{character.name}"
+          Are you sure that you'd like to remove character "{character?.name}"
           from your favorites?
         </DialogContentText>
         <DialogActions>
