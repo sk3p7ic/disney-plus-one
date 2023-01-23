@@ -2,6 +2,7 @@ import { Box, IconButton, Pagination, Stack, TextField } from "@mui/material";
 import { Refresh } from "@mui/icons-material";
 import { useSearchQuery } from "../../contexts/SearchQueryContext";
 import { useRef } from "react";
+import { ErrorStateComponent, LoadingStateComponent } from "../QueryAltStates";
 
 export const SearchNavigator = () => {
   /** Stores a reference to the TextField where the user may manually jump to a page. */
@@ -14,8 +15,8 @@ export const SearchNavigator = () => {
     changePage,
   } = useSearchQuery();
 
-  if (loading) return <div>Loading</div>;
-  if (error) return <div>Error</div>;
+  if (loading) return <LoadingStateComponent />;
+  if (error) return <ErrorStateComponent error={error} />;
 
   // Get the number of pages of data available to query
   const pageCount = data?.characters.paginationInfo.totalPages ?? 1;

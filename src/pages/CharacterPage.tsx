@@ -29,6 +29,10 @@ import {
   LongCharacter,
 } from "../util/queries";
 import { useFavorites } from "../contexts/FavoritesContext";
+import {
+  ErrorStateComponent,
+  LoadingStateComponent,
+} from "../components/QueryAltStates";
 
 export const loader = ({ params }: any) => {
   return !isNaN(Number(params.character))
@@ -40,12 +44,15 @@ export const CharacterPage = () => {
   const { favorites, toggleFavorite } = useFavorites();
   const { loading, error, data } = useQuery(useLoaderData() as DocumentNode);
 
-  if (loading) return <div>Loading</div>;
-  if (error) return <div>Error</div>;
+  if (loading) return <LoadingStateComponent />;
+  if (error) return <ErrorStateComponent error={error} />;
 
   const character =
     (data.character as LongCharacter) ??
     (data.characterByName as LongCharacter);
+
+  if (!character)
+    return <ErrorStateComponent error={"Character does not exist"} />;
 
   return (
     <Container maxWidth="md">
