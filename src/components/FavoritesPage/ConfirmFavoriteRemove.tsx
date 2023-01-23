@@ -17,6 +17,7 @@ type ConfirmFavoriteRemoveDialogProps = {
    * Handles the button clicks of either removing a character from the user's
    * favorites or canceling the action.
    * @param action Whether the user will choose to `accept` or `decline` the
+   * @param character Information about the character this dialog is about.
    * option to remove this character from their favorites.
    */
   handleButtonClick: (
