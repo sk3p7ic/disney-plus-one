@@ -100,6 +100,13 @@ export type LongCharacter = {
   enemies: string[];
 };
 
+/**
+ * Gets the information for a given Disney character with a given ID, if it
+ * exists.
+ * @param id The ID of the character to get information for.
+ * @returns Query results for the Disney character with the given ID, if it
+ * exists.
+ */
 export const getCharacterById = (id: number): DocumentNode => gql`
   {
     character (_id: ${id}) {
@@ -118,6 +125,13 @@ export const getCharacterById = (id: number): DocumentNode => gql`
   }
 `;
 
+/**
+ * Gets the information for a given Disney character with a given name, if it
+ * exists.
+ * @param name The name of the character to get information for.
+ * @returns Query results for the Disney character with the given name, if it
+ * exists.
+ */
 export const getCharacterByName = (name: string): DocumentNode => gql`
   {
     characterByName (name: \"${name}\") {

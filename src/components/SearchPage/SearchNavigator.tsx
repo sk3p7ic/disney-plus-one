@@ -29,11 +29,17 @@ export const SearchNavigator = () => {
     changePage(p);
   };
 
+  /**
+   * Handles jumping to a given page of characters.
+   */
   const handleJumpToPage = () => {
+    // Get the reference to the input element
     const inputElem = manualPageField.current?.querySelector("input");
-    if (!inputElem) return;
+    if (!inputElem) return; // If the element cannot be found
+    // If the element is a valid page number, change to this page
     if (!isNaN(Number(inputElem.value)) && Number(inputElem.value) <= pageCount)
       changePage(Number(inputElem.value));
+    // Clear the current page value from the input
     inputElem.value = "";
   };
 
