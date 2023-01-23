@@ -7,11 +7,16 @@ import {
   Chip,
   Grid,
   IconButton,
+  Snackbar,
   Typography,
 } from "@mui/material";
 import { Favorite, FavoriteBorder, Tv, Movie } from "@mui/icons-material";
 import { useSearchQuery } from "../../contexts/SearchQueryContext";
-import { useFavorites } from "../../contexts/FavoritesContext";
+import {
+  FavoriteCharacterInfo,
+  useFavorites,
+} from "../../contexts/FavoritesContext";
+import { useState } from "react";
 
 export const SearchResultsList = () => {
   // Get the state from the context
@@ -21,6 +26,14 @@ export const SearchResultsList = () => {
 
   // Get the favorites context state
   const { favorites, toggleFavorite } = useFavorites();
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [snackbarText, setSnackbarText] = useState("");
+
+  const handleAddFavorite = (info: FavoriteCharacterInfo) => {
+    toggleFavorite(info);
+    setSnackbarText(`Added favorite '${info.name}'.`);
+    setShowSnackbar(true);
+  };
 
   // If this query has not finished or has had an error
   if (loading || error) return <div></div>;
@@ -75,7 +88,7 @@ export const SearchResultsList = () => {
                 </Button>
                 <IconButton
                   onClick={() =>
-                    toggleFavorite({
+                    handleAddFavorite({
                       id: character._id,
                       name: character.name,
                       imageUrl: character.imageUrl,
@@ -93,6 +106,12 @@ export const SearchResultsList = () => {
           </Grid>
         ))}
       </Grid>
+      <Snackbar
+        open={showSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setShowSnackbar(false)}
+        message={snackbarText}
+      />
     </div>
   );
 };
