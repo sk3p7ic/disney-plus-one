@@ -6,6 +6,10 @@ import { DefaultLayout } from "./pages/_Layout";
 import { HomePage } from "./pages/HomePage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { SearchPage } from "./pages/SearchPage";
+import {
+  CharacterPage,
+  loader as characterPageLoader,
+} from "./pages/CharacterPage";
 
 const toRouteElement = (children: JSX.Element) => (
   <DefaultLayout>{children}</DefaultLayout>
@@ -19,6 +23,11 @@ const router = createBrowserRouter([
   {
     path: "/search",
     element: toRouteElement(<SearchPage />),
+  },
+  {
+    path: "/search/:character",
+    element: toRouteElement(<CharacterPage />),
+    loader: characterPageLoader,
   },
 ]);
 

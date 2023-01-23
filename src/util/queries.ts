@@ -85,3 +85,53 @@ export const getCharacterListQuery = (page: number): DocumentNode =>
       }
     }
   `;
+
+export type LongCharacter = {
+  _id: number;
+  name: string;
+  sourceUrl: string;
+  imageUrl: string;
+  films: string[];
+  shortFilms: string[];
+  tvShows: string[];
+  alignment?: string;
+  parkAttractions: string[];
+  allies: string[];
+  enemies: string[];
+};
+
+export const getCharacterById = (id: number): DocumentNode => gql`
+  {
+    character (_id: ${id}) {
+      _id
+      name
+      sourceUrl
+      imageUrl
+      films
+      shortFilms
+      tvShows
+      alignment
+      parkAttractions
+      allies
+      enemies
+    }
+  }
+`;
+
+export const getCharacterByName = (name: string): DocumentNode => gql`
+  {
+    characterByName (name: \"${name}\") {
+      _id
+      name
+      sourceUrl
+      imageUrl
+      films
+      shortFilms
+      tvShows
+      alignment
+      parkAttractions
+      allies
+      enemies
+    }
+  }
+`;
