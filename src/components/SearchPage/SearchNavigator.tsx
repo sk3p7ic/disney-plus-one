@@ -19,7 +19,6 @@ export const SearchNavigator = () => {
 
   // Get the number of pages of data available to query
   const pageCount = data?.characters.paginationInfo.totalPages ?? 1;
-  console.log(data);
 
   /**
    * Handles the changing of the page by updating the context's state.
