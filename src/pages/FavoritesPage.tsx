@@ -16,11 +16,21 @@ import {
   useFavorites,
 } from "../contexts/FavoritesContext";
 import { useState } from "react";
+import { ConfirmFavoriteRemoveDialog } from "../components/FavoritesPage/ConfirmFavoriteRemove";
 
 export const FavoritesPage = () => {
   const { favorites, toggleFavorite } = useFavorites();
   const [showSnackbar, setShowSnackbar] = useState(false);
   const [snackbarText, setSnackbarText] = useState("");
+  const [showConfirmationDialog, setShowConfirmationDialog] = useState(false);
+
+  const handleCloseDialog = () => setShowConfirmationDialog(false);
+  const handleDialogAction = (
+    action: "accept" | "decline",
+    character: FavoriteCharacterInfo
+  ) => {
+    if (action === "accept") handleRemoveFavorite(character);
+  };
 
   const handleRemoveFavorite = (character: FavoriteCharacterInfo) => {
     toggleFavorite(character);
@@ -44,7 +54,7 @@ export const FavoritesPage = () => {
                   {character.name}
                 </ListItemText>
                 <ListItemButton
-                  onClick={() => handleRemoveFavorite(character)}
+                  onClick={() => setShowConfirmationDialog(true)}
                   sx={{
                     flexGrow: 0,
                     display: "flex",
@@ -53,6 +63,12 @@ export const FavoritesPage = () => {
                 >
                   <Favorite />
                 </ListItemButton>
+                <ConfirmFavoriteRemoveDialog
+                  show={showConfirmationDialog}
+                  onClose={handleCloseDialog}
+                  handleButtonClick={handleDialogAction}
+                  character={character}
+                />
               </ListItem>
             ))}
           </List>
