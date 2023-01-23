@@ -69,7 +69,9 @@ export const HomePage = () => {
             Start your adventure of learning about{" "}
             <strong>{totalCharacters}</strong> characters!
           </Typography>
-          <Button variant="contained">Get Started</Button>
+          <Button variant="contained" href="/search">
+            Get Started
+          </Button>
         </Box>
       </Container>
     </main>
