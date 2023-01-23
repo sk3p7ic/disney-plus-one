@@ -4,7 +4,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { getLastPageItemCount, getTotalPages } from "../util/queries";
-import DisneyBg from "../assets/Disney-Bg.jpg";
+import DisneyBg from "../assets/img/Disney-Bg.jpg";
 import {
   ErrorStateComponent,
   LoadingStateComponent,
