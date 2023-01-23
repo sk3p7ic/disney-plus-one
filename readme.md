@@ -4,6 +4,9 @@ This project uses the GraphQL API available at [https://api.disneyapi.dev/graphq
 to allow the user to view basic information about various Disney characters, as well as to keep track of who those
 favorite characters might be.
 
+A deployed example of this project is available at
+[https://disney-plus-one.vercel.app/](https://disney-plus-one.vercel.app/).
+
 ## Tech Stack
 
 This project uses [React](https://reactjs.org/) for the frontend and [Vite](https://vitejs.dev/) for the build
