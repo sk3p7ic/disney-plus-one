@@ -85,9 +85,15 @@ export const Header = forwardRef<HTMLDivElement>((_, ref) => {
             onClose={() => setShowMobileNav(false)}
           >
             {pages.map((page) => (
-              <MenuItem key={page.name} href={page.href}>
-                <Typography>{page.name}</Typography>
-              </MenuItem>
+              <a
+                key={page.name}
+                href={page.href}
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                <MenuItem>
+                  <Typography>{page.name}</Typography>
+                </MenuItem>
+              </a>
             ))}
           </Menu>
         </Box>
