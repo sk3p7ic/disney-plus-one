@@ -6,10 +6,6 @@ import {
   CardMedia,
   Container,
   IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
   Stack,
   Typography,
 } from "@mui/material";
@@ -33,6 +29,7 @@ import {
   ErrorStateComponent,
   LoadingStateComponent,
 } from "../components/QueryAltStates";
+import { TopicListing } from "../components/CharacterPage/TopicListing";
 
 export const loader = ({ params }: any) => {
   return !isNaN(Number(params.character))
@@ -87,95 +84,53 @@ export const CharacterPage = () => {
           >
             View Wiki Page
           </Button>
+
           {(character.films.length > 0 || character.shortFilms.length > 0) && (
-            <Stack>
-              <Typography variant="h6">Filmography:</Typography>
-              <List>
-                {character.films.map((film) => (
-                  <ListItem key={film}>
-                    <ListItemIcon>
-                      <Movie />
-                    </ListItemIcon>
-                    <ListItemText>{film}</ListItemText>
-                  </ListItem>
-                ))}
-                {character.shortFilms.map((film) => (
-                  <ListItem key={film}>
-                    <ListItemIcon>
-                      <Movie />
-                    </ListItemIcon>
-                    <ListItemText>{film} (Short Film)</ListItemText>
-                  </ListItem>
-                ))}
-              </List>
-            </Stack>
+            <TopicListing
+              title="Filmography"
+              items={character.films.concat(
+                character.shortFilms.map((film) => `${film} (Short Film)`)
+              )}
+              icon={<Movie />}
+            />
           )}
+
           {character.tvShows.length > 0 && (
-            <Stack>
-              <Typography variant="h6">TV Shows:</Typography>
-              <List>
-                {character.tvShows.map((show) => (
-                  <ListItem key={show}>
-                    <ListItemIcon>
-                      <Tv />
-                    </ListItemIcon>
-                    <ListItemText>{show}</ListItemText>
-                  </ListItem>
-                ))}
-              </List>
-            </Stack>
+            <TopicListing
+              title="TV Shows"
+              items={character.tvShows}
+              icon={<Tv />}
+            />
           )}
+
           {character.parkAttractions.length > 0 && (
-            <Stack>
-              <Typography variant="h6">Attractions:</Typography>
-              <List>
-                {character.parkAttractions.map((attraction) => (
-                  <ListItem key={attraction}>
-                    <ListItemIcon>
-                      <Attractions />
-                    </ListItemIcon>
-                    <ListItemText>{attraction}</ListItemText>
-                  </ListItem>
-                ))}
-              </List>
-            </Stack>
+            <TopicListing
+              title="Attractions"
+              items={character.parkAttractions}
+              icon={<Attractions />}
+            />
           )}
+
           {character.alignment && (
             <Typography variant="h6">{character.alignment}</Typography>
           )}
+
           {character.allies.length > 0 && (
-            <Stack>
-              <Typography variant="h6">Allies:</Typography>
-              <List>
-                {character.allies.map((ally) => (
-                  <ListItem key={ally}>
-                    <ListItemIcon>
-                      <AccountCircle />
-                    </ListItemIcon>
-                    <ListItemText>
-                      <a href={`/search/${ally}`}>{ally}</a>
-                    </ListItemText>
-                  </ListItem>
-                ))}
-              </List>
-            </Stack>
+            <TopicListing
+              title="Allies"
+              items={character.allies}
+              icon={<AccountCircle />}
+              linkMode
+            />
           )}
+
           {character.enemies.length > 0 && (
-            <Stack>
-              <Typography variant="h6">Enemies:</Typography>
-              <List>
-                {character.enemies.map((enemy) => (
-                  <ListItem key={enemy}>
-                    <ListItemIcon>
-                      <NoAccounts />
-                    </ListItemIcon>
-                    <ListItemText>
-                      <a href={`/search/${enemy}`}>{enemy}</a>
-                    </ListItemText>
-                  </ListItem>
-                ))}
-              </List>
-            </Stack>
+            <TopicListing
+              title="Enemies"
+              items={character.enemies}
+              icon={<NoAccounts />}
+              linkMode
+            />
           )}
         </CardContent>
       </Card>
