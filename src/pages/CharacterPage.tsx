@@ -5,6 +5,7 @@ import {
   CardContent,
   CardMedia,
   Container,
+  IconButton,
   List,
   ListItem,
   ListItemIcon,
@@ -15,6 +16,8 @@ import {
 import {
   AccountCircle,
   Attractions,
+  Favorite,
+  FavoriteBorder,
   Movie,
   NoAccounts,
   Tv,
@@ -25,6 +28,7 @@ import {
   getCharacterByName,
   LongCharacter,
 } from "../util/queries";
+import { useFavorites } from "../contexts/FavoritesContext";
 
 export const loader = ({ params }: any) => {
   return !isNaN(Number(params.character))
@@ -33,6 +37,7 @@ export const loader = ({ params }: any) => {
 };
 
 export const CharacterPage = () => {
+  const { favorites, toggleFavorite } = useFavorites();
   const { loading, error, data } = useQuery(useLoaderData() as DocumentNode);
 
   if (loading) return <div>Loading</div>;
@@ -52,7 +57,12 @@ export const CharacterPage = () => {
           sx={{ objectFit: "cover" }}
         />
         <CardContent>
-          <Typography variant="h4">{character.name}</Typography>
+          <Stack direction="row" spacing={2}>
+            <Typography variant="h4">{character.name}</Typography>
+            <IconButton onClick={() => toggleFavorite(character._id)}>
+              {favorites.has(character._id) ? <Favorite /> : <FavoriteBorder />}
+            </IconButton>
+          </Stack>
           <Button
             variant="contained"
             color="secondary"
