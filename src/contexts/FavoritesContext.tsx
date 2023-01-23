@@ -1,7 +1,6 @@
-import { StringValueNode } from "graphql";
 import React, { useContext, useEffect, useState } from "react";
 
-type FavoriteCharacterInfo = {
+export type FavoriteCharacterInfo = {
   id: number;
   name: string;
   imageUrl: string;

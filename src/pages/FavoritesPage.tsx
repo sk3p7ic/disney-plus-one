@@ -7,13 +7,26 @@ import {
   ListItemAvatar,
   ListItemButton,
   ListItemText,
+  Snackbar,
   Typography,
 } from "@mui/material";
 import { Favorite } from "@mui/icons-material";
-import { useFavorites } from "../contexts/FavoritesContext";
+import {
+  FavoriteCharacterInfo,
+  useFavorites,
+} from "../contexts/FavoritesContext";
+import { useState } from "react";
 
 export const FavoritesPage = () => {
   const { favorites, toggleFavorite } = useFavorites();
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [snackbarText, setSnackbarText] = useState("");
+
+  const handleRemoveFavorite = (character: FavoriteCharacterInfo) => {
+    toggleFavorite(character);
+    setSnackbarText(`Removed favorite '${character.name}'.`);
+    setShowSnackbar(true);
+  };
 
   return (
     <Container maxWidth="md" sx={{ paddingY: 2 }}>
@@ -28,7 +41,7 @@ export const FavoritesPage = () => {
               </ListItemAvatar>
               <ListItemText sx={{ flexGrow: 1 }}>{character.name}</ListItemText>
               <ListItemButton
-                onClick={() => toggleFavorite(character)}
+                onClick={() => handleRemoveFavorite(character)}
                 sx={{ flexGrow: 0, display: "flex", justifyContent: "center" }}
               >
                 <Favorite />
@@ -37,6 +50,12 @@ export const FavoritesPage = () => {
           ))}
         </List>
       </Container>
+      <Snackbar
+        open={showSnackbar}
+        autoHideDuration={3000}
+        onClose={() => setShowSnackbar(false)}
+        message={snackbarText}
+      />
     </Container>
   );
 };
