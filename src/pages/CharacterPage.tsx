@@ -127,7 +127,9 @@ export const CharacterPage = () => {
                     <ListItemIcon>
                       <AccountCircle />
                     </ListItemIcon>
-                    <ListItemText>{ally}</ListItemText>
+                    <ListItemText>
+                      <a href={`/search/${ally}`}>{ally}</a>
+                    </ListItemText>
                   </ListItem>
                 ))}
               </List>
@@ -142,7 +144,9 @@ export const CharacterPage = () => {
                     <ListItemIcon>
                       <NoAccounts />
                     </ListItemIcon>
-                    <ListItemText>{enemy}</ListItemText>
+                    <ListItemText>
+                      <a href={`/search/${enemy}`}>{enemy}</a>
+                    </ListItemText>
                   </ListItem>
                 ))}
               </List>
