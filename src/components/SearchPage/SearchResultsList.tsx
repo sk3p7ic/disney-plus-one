@@ -11,12 +11,16 @@ import {
 } from "@mui/material";
 import { Favorite, FavoriteBorder, Tv, Movie } from "@mui/icons-material";
 import { useSearchQuery } from "../../contexts/SearchQueryContext";
+import { useFavorites } from "../../contexts/FavoritesContext";
 
 export const SearchResultsList = () => {
   // Get the state from the context
   const {
     searchQuery: { loading, error, data },
   } = useSearchQuery();
+
+  // Get the favorites context state
+  const { favorites, toggleFavorite } = useFavorites();
 
   // If this query has not finished or has had an error
   if (loading || error) return <div></div>;
@@ -69,8 +73,12 @@ export const SearchResultsList = () => {
                 <Button href={`/search/${character._id}`}>
                   View More Info
                 </Button>
-                <IconButton>
-                  <FavoriteBorder />
+                <IconButton onClick={() => toggleFavorite(character._id)}>
+                  {favorites.has(character._id) ? (
+                    <Favorite />
+                  ) : (
+                    <FavoriteBorder />
+                  )}
                 </IconButton>
               </CardActions>
             </Card>
