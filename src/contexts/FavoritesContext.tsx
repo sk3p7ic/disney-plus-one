@@ -43,9 +43,9 @@ export const FavoritesContextProvider = ({
   useEffect(() => {
     const loadAndSetFavorites = async () => {
       // Get the favorites from localStorage
-      const favs: { favs: FavoriteCharacterInfo[] } = await JSON.parse(
-        localStorage.getItem("disney-lookup-favorites") ?? "{favs: []}"
-      );
+      const rawFavs = localStorage.getItem("disney-lookup-favorites");
+      if (!rawFavs) return;
+      const favs: { favs: FavoriteCharacterInfo[] } = await JSON.parse(rawFavs);
       // Convert the loaded data into a form that may be used to make a Map
       const loadedFavorites: [number, FavoriteCharacterInfo][] = favs.favs.map(
         (f) => [f.id, f]
